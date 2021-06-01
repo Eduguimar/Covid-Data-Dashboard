@@ -1,5 +1,4 @@
 const baseUrl = "https://api.covid19api.com";
-const countriesUrl = "/country";
 const summaryUrl = "/summary";
 
 const totalConfirmed = document.getElementById("confirmed");
