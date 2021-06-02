@@ -18,8 +18,8 @@ async function getUrl(url) {
 const summary = async () => {
     const summaryData = await getUrl(`${baseUrl}${summaryUrl}`);
     renderData(summaryData);
-    renderPizzaChat(summaryData);
-    renderBarChat(summaryData);
+    renderPizzaChart(summaryData);
+    renderBarChart(summaryData);
 }
 
 const renderData = data => {
@@ -62,7 +62,7 @@ let pizza = new Chart(document.getElementById("pizza"), {
     }
 });
 
-const renderPizzaChat = summaryData => {
+const renderPizzaChart = summaryData => {
     pizza.data.datasets[0].data = [
         summaryData.Global.NewConfirmed.toLocaleString("PT"),
         summaryData.Global.NewRecovered.toLocaleString("PT"),
@@ -97,7 +97,7 @@ let barras = new Chart(document.getElementById("barras"), {
     }
 });
 
-const renderBarChat = summaryData => {
+const renderBarChart = summaryData => {
     const countriesData = summaryData.Countries;
     const filteredData = _.orderBy(countriesData, ['TotalDeaths'], ['desc']).slice([start = 0], [end = 10]);
 
@@ -115,4 +115,6 @@ const renderBarChat = summaryData => {
     barras.update();
 };
 
-summary();
+window.onload = () => {
+    summary();
+}
